@@ -2,6 +2,8 @@ import random
 
 #ensemble des questions
 
+choix_possibles = []
+
 def choice01():
     print("À une intersection sans signalisation (pas de panneau, pas de feu), quelle règle générale s'applique ?")
     print("A) Priorité à gauche.")
@@ -16,6 +18,7 @@ def choice01():
     else:
         print("réponse invalide")
         choice01()
+choix_possibles.append(choice01)
 
 def choice02():
     
@@ -30,17 +33,20 @@ def choice02():
         print("vrai")
     else:
         print("réponse invalide")
+        choice02()
 
+choix_possibles.append(choice02)
 
 #Le choix des questions
 
-choix_possibles = [choice01,choice02]
-question01 = random.choice(choix_possibles)
-del choix_possibles[choix_possibles.index(question01)]
-question02 = random.choice(choix_possibles)
-del choix_possibles[choix_possibles.index(question02)]
+question = []
+
+while choix_possibles != []:
+    question_choised = random.choice(choix_possibles)
+    question.append(question_choised)
+    del choix_possibles[choix_possibles.index(question_choised)]
 
 #execution des questions
 
-question01()
-question02()
+for Q in question:
+    Q()
